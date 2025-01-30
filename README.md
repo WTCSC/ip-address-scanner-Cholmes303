@@ -2,7 +2,6 @@
 [![Open in Codespaces](https://classroom.github.com/assets/launch-codespace-2972f46106e565e64193e422d61a12cf1da4916b45550586e14ef0a7c637dd04.svg)](https://classroom.github.com/open-in-codespaces?assignment_repo_id=17931271)
 
 # Network Scanner
-
 ## Description
 This script scans a given network (provided in CIDR notation) and determines which hosts are active by sending ping requests. It works on both Windows and Unix-based systems (macOS/Linux) by adjusting the ping command accordingly. The script outputs the status of each scanned IP address and provides a summary of active, inactive, and unreachable hosts.
 
