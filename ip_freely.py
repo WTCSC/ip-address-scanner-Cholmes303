@@ -1,9 +1,10 @@
-
+# Used to recognize IP addresses and CIDR notation.
 import ipaddress
-# Used for commands outside of Python.
+# Used to run system commands.
 import subprocess
-
+# Used to determine the OS.
 import platform
+# Used to search for patterns in strings.
 import re
 
 def ping_host(ip):
@@ -14,22 +15,25 @@ def ping_host(ip):
             # Commands for Windows.
             cmd = ["ping", "-n", "1", "-w", "1000", ip]  
         else:
-            # Commands for Linux/macOS.
+            # Commands for macOS and Linux.
             cmd = ["ping", "-c", "1", "-W", "1", ip]  
 
-        # Run the ping command and capture output.
+        # Run the ping command and capture the output.
         result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 
-        # Check for errors.
+        # Check if the command was successful.
         if result.returncode != 0:
             # Capture error messages.
             return "ERROR", result.stderr.strip()  
 
-        # Extract response time using regex (re).
+        # Search for the response time in the output.
         match = re.search(r"time[=<]([\d.]+) ?ms", result.stdout)
+        
+        # If the response time is found, return it.
         if match:
             response_time = match.group(1) + "ms"
             return "UP", response_time
+        # If no response time is found, return "No response".
         else:
             return "DOWN", "No response"
 
@@ -49,9 +53,10 @@ def get_active_hosts(cidr):
 
         # Iterate over all valid hosts.
         for ip in network.hosts():
+            # Ping the host and get the status and message.
             status, message = ping_host(str(ip))
 
-            # Format output.
+            # Print the IP address, status, and message.
             print(f"{ip} - {status.ljust(6)} ({message})")
 
             # Count occurrences of UP, DOWN, or ERROR.
@@ -74,6 +79,7 @@ def get_active_hosts(cidr):
     except ValueError as e:
         print(f"Invalid CIDR notation: {e}")
 
+# If the script is run directly, prompt the user for input.
 if __name__ == "__main__":
     cidr_input = input("Enter CIDR notation (e.g., 192.168.1.0/24): ")
     get_active_hosts(cidr_input)
