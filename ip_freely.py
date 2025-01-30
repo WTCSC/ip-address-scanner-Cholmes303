@@ -6,6 +6,8 @@ import subprocess
 import platform
 # Used to search for patterns in strings.
 import re
+# Used for time the program takes to run.
+import time
 
 def ping_host(ip):
     """Pings a host and returns the status and response time."""
@@ -48,8 +50,11 @@ def get_active_hosts(cidr):
         print(f"\nScanning network {cidr}...\n")
 
         results = []
+
         # Sets the count of each occurrence. 
         up_count = down_count = error_count = 0
+        # Start timer uses Epoch time. 
+        start_time = time.time()
 
         # Iterate over all valid hosts.
         for ip in network.hosts():
@@ -72,6 +77,8 @@ def get_active_hosts(cidr):
             # Message (response time in milliseconds, no response, or network not reachable).
             results.append((ip, status, message))
 
+            # Prints how long it takes for the program to run. 
+            print(f"time: {time.time() - start_time}")
         # Print summary of IP networks from CIDR.
         print(f"\nScan complete. Found {up_count} active hosts, {down_count} down, {error_count} errors.")
 
