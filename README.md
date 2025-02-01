@@ -19,6 +19,8 @@ This script scans a given network (provided in CIDR notation) and determines whi
 1. Clone this repository or download the script.
    ```sh
    git clone https://github.com/WTCSC/ip-address-scanner-Cholmes303.git
+   ```
+   ```
    cd <repository_folder>
    ```
 2. Ensure Python is installed on your system.
