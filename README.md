@@ -5,9 +5,6 @@
 ## Description
 This script scans a given network (provided in CIDR notation) and determines which hosts are active by sending ping requests. It works on both Windows and Unix-based systems (macOS/Linux) by adjusting the ping command accordingly. The script outputs the status of each scanned IP address and provides a summary of active, inactive, and unreachable hosts.
 
-## What is IPv4 and CIDR notation?
-IPv4 is a network protocol (IP) that is in 32 bit format. 
-
 ## Features
 - Supports IPv4 addresses with CIDR notation.
 - Works on Windows, macOS, and Linux.
