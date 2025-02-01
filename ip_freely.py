@@ -77,11 +77,12 @@ def get_active_hosts(cidr):
             # Message (response time in milliseconds, no response, or network not reachable).
             results.append((ip, status, message))
 
-            # Prints how long it takes for the program to run. 
-            print(f"time: {time.time() - start_time}")
+            
         # Print summary of IP networks from CIDR.
         print(f"\nScan complete. Found {up_count} active hosts, {down_count} down, {error_count} errors.")
 
+        # Prints how long it takes for the program to run. 
+        print(f"time: {time.time() - start_time}")
     # Checks for valid IPv4 CIDR notation (e.g. 192.168.1.0/24).
     except ValueError as e:
         print(f"Invalid CIDR notation: {e}")
